@@ -1,0 +1,295 @@
+/* ═══════════════════════════════════════════════════════
+   Palette violet
+   bg-deep   : #0d0821   (fond très sombre)
+   bg-panel  : #1e0f3a   (cartes / panels)
+   bg-surface: #2d1b4e   (surfaces secondaires)
+   violet    : #7c3aed   (violet principal)
+   violet-hi : #a78bfa   (violet clair / accent)
+   violet-lo : #4c1d95   (violet sombre)
+   text      : #e9d5ff   (texte principal)
+   text-muted: #9b73d3   (texte secondaire)
+═══════════════════════════════════════════════════════ */
+
+/* ── Base ─────────────────────────────────────────── */
+Screen {
+    background: #0d0821;
+}
+
+/* ── Buttons (global) ─────────────────────────────── */
+Button {
+    background: #4c1d95;
+    color: #e9d5ff;
+    border-top: tall #7c3aed;
+    border-bottom: tall #2d0f6e;
+}
+
+Button:hover {
+    background: #5b21b6;
+    color: #ffffff;
+}
+
+Button:focus {
+    background: #5b21b6;
+    border-top: tall #a78bfa;
+    border-bottom: tall #4c1d95;
+}
+
+Button.-success {
+    background: #7c3aed;
+    border-top: tall #a78bfa;
+    border-bottom: tall #4c1d95;
+}
+
+Button.-success:hover {
+    background: #6d28d9;
+}
+
+Button.-primary {
+    background: #6d28d9;
+    border-top: tall #a78bfa;
+    border-bottom: tall #3b0764;
+}
+
+Button.-error {
+    background: #7f1d1d;
+    color: #fecaca;
+    border-top: tall #ef4444;
+    border-bottom: tall #450a0a;
+}
+
+Button.-error:hover {
+    background: #991b1b;
+}
+
+/* ── Input ────────────────────────────────────────── */
+Input {
+    background: #2d1b4e;
+    color: #e9d5ff;
+    border: round #7c3aed;
+}
+
+Input:focus {
+    border: round #a78bfa;
+}
+
+/* ── RadioSet / RadioButton ───────────────────────── */
+RadioSet {
+    background: #2d1b4e;
+    border: round #4c1d95;
+    height: auto;
+    padding: 0 1;
+}
+
+RadioButton {
+    background: #2d1b4e;
+    color: #e9d5ff;
+}
+
+RadioButton:hover {
+    background: #3d2465;
+}
+
+/* ── Rule ─────────────────────────────────────────── */
+Rule {
+    color: #4c1d95;
+}
+
+/* ── DataTable ────────────────────────────────────── */
+DataTable {
+    background: #2d1b4e;
+    color: #e9d5ff;
+}
+
+DataTable > .datatable--header {
+    background: #4c1d95;
+    color: #e9d5ff;
+    text-style: bold;
+}
+
+DataTable > .datatable--cursor {
+    background: #7c3aed;
+    color: #ffffff;
+}
+
+/* ── MarkdownViewer ───────────────────────────────── */
+MarkdownViewer {
+    background: #0d0821;
+    color: #e9d5ff;
+}
+
+Markdown {
+    background: #0d0821;
+    color: #e9d5ff;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Menu Principal
+═══════════════════════════════════════════════════════ */
+MenuScreen {
+    layout: vertical;
+}
+
+#menu_footer {
+    dock: bottom;
+    text-align: center;
+    color: #9b73d3;
+    background: #1e0f3a;
+    border-top: solid #4c1d95;
+    padding: 0 1;
+    width: 100%;
+    height: 1;
+}
+
+#menu_card {
+    width: 58;
+    height: auto;
+    border: double #7c3aed;
+    background: #1e0f3a;
+    padding: 1 2;
+}
+
+#ascii_title {
+    color: #c678dd;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+#btn_new_game {
+    width: 100%;
+    margin-bottom: 1;
+}
+
+.btn-row {
+    height: auto;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+.btn-row Button {
+    width: 1fr;
+    margin-right: 1;
+}
+
+.btn-row Button:last-of-type {
+    margin-right: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Nouvelle Partie
+═══════════════════════════════════════════════════════ */
+NewGameScreen {
+    align: center middle;
+}
+
+#new_game_card {
+    width: 52;
+    height: auto;
+    border: round #7c3aed;
+    background: #1e0f3a;
+    padding: 1 3;
+}
+
+#new_game_title {
+    text-style: bold;
+    color: #c678dd;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+#new_game_card Rule {
+    margin: 1 0;
+}
+
+.field-label {
+    text-style: bold;
+    color: #e9d5ff;
+    margin-top: 1;
+    margin-bottom: 1;
+}
+
+NewGameScreen Input {
+    margin-bottom: 1;
+}
+
+NewGameScreen RadioSet {
+    margin-bottom: 1;
+}
+
+#btn_row {
+    height: auto;
+    margin-top: 2;
+    align: center middle;
+}
+
+#btn_start {
+    width: 1fr;
+    margin-right: 1;
+}
+
+#btn_back_ng {
+    width: 1fr;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Scores
+═══════════════════════════════════════════════════════ */
+ScoresScreen {
+    align: center middle;
+}
+
+#scores_card {
+    width: 64;
+    height: 80%;
+    border: round #7c3aed;
+    background: #1e0f3a;
+    padding: 1 3;
+}
+
+#scores_title {
+    text-style: bold;
+    color: #c678dd;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+#best_label {
+    color: #a78bfa;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1;
+}
+
+#scores_card Rule {
+    margin: 1 0;
+}
+
+#scores_table {
+    height: 1fr;
+}
+
+#btn_back_scores {
+    width: 100%;
+    margin-top: 1;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Règles / Crédits
+═══════════════════════════════════════════════════════ */
+RulesScreen, CreditsScreen {
+    background: #0d0821;
+    layout: vertical;
+}
+
+RulesScreen MarkdownViewer,
+CreditsScreen MarkdownViewer {
+    margin: 0 2;
+    height: 1fr;
+}
+
+#btn_back {
+    dock: bottom;
+    margin: 1 3;
+}
