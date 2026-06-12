@@ -1,10 +1,11 @@
 from textual.app import ComposeResult
 from textual.binding import Binding
-from textual.containers import Vertical
+from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
 from textual.widgets import Button, DataTable, Footer, Label, Rule
 
 from src.data.score_manager import best_player, load_scores
+from src.ui.widgets.score_chart import show_scores_chart
 
 
 class ScoresScreen(Screen):
@@ -23,7 +24,9 @@ class ScoresScreen(Screen):
             yield Label(best_msg, id="best_label")
             yield Rule()
             yield DataTable(id="scores_table")
-            yield Button("Retour", id="btn_back_scores", variant="default")
+            with Horizontal(id="scores_btn_row"):
+                yield Button("Graphique", id="btn_chart", variant="default")
+                yield Button("Retour", id="btn_back_scores", variant="default")
         yield Footer()
 
     def on_mount(self) -> None:
@@ -37,6 +40,12 @@ class ScoresScreen(Screen):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "btn_back_scores":
             self.action_go_back()
+        elif event.button.id == "btn_chart":
+            if not load_scores():
+                self.app.notify("Aucun score à afficher.", severity="warning")
+                return
+            with self.app.suspend():
+                show_scores_chart()
 
     def action_go_back(self) -> None:
         self.app.pop_screen()

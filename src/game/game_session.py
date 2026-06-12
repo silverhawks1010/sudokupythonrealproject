@@ -16,12 +16,13 @@ class SessionState(Enum):
 class GameSession:
     """Holds the state of one ongoing Sudoku game."""
 
-    def __init__(self, player: Player, difficulty: str, board: Board):
+    def __init__(self, player: Player, difficulty: str, board: Board, is_ia: bool = False):
         self.player = player
         self.difficulty = difficulty
         self.board = board
         self.state = SessionState.RUNNING
         self.session_score: int = 0
+        self.is_ia = is_ia
         self._ia = IASolver(board)
 
     def human_place(self, row: int, col: int, value: int) -> bool:

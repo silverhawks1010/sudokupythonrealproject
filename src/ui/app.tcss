@@ -270,9 +270,90 @@ ScoresScreen {
     height: 1fr;
 }
 
-#btn_back_scores {
+#scores_btn_row {
+    height: auto;
     width: 100%;
     margin-top: 1;
+}
+
+#scores_btn_row Button {
+    width: 1fr;
+    margin-right: 1;
+}
+
+#scores_btn_row Button:last-of-type {
+    margin-right: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Partie en cours
+═══════════════════════════════════════════════════════ */
+GameScreen {
+    layout: vertical;
+}
+
+#game_footer {
+    dock: bottom;
+    text-align: center;
+    color: #9b73d3;
+    background: #1e0f3a;
+    border-top: solid #4c1d95;
+    padding: 0 1;
+    width: 100%;
+    height: 2;
+}
+
+#game_card {
+    width: 60;
+    height: auto;
+    align: center middle;
+    border: double #7c3aed;
+    background: #1e0f3a;
+    padding: 1 2;
+}
+
+#game_header {
+    width: 100%;
+    height: auto;
+    align: center middle;
+    margin-bottom: 1;
+}
+
+#game_header Static {
+    width: auto;
+    height: auto;
+    text-style: bold;
+    color: #c678dd;
+    margin: 0 1;
+}
+
+#game_body {
+    width: 100%;
+    height: 14;
+    align: left middle;
+}
+
+#number_tracker {
+    width: 3;
+    height: 9;
+    text-align: center;
+}
+
+#grid_wrapper {
+    width: 1fr;
+    height: 14;
+}
+
+#sudoku_grid {
+    width: 34;
+    height: 14;
+}
+
+#message_info {
+    width: 100%;
+    text-align: center;
+    margin-top: 1;
+    height: 1;
 }
 
 /* ═══════════════════════════════════════════════════════
