@@ -1,3 +1,6 @@
+import subprocess
+import sys
+
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Center, Horizontal, Vertical
@@ -35,6 +38,9 @@ class MenuScreen(Screen):
                     yield Button("Crédits", id="btn_credits", variant="default")
                     yield Button("Quitter",  id="btn_quit",    variant="error")
 
+                with Center():
+                    yield Button("🖥  Interface Graphique (Pygame)", id="btn_pygame", variant="primary")
+
     def on_button_pressed(self, event: Button.Pressed) -> None:
         from src.ui.screens.new_game_screen import NewGameScreen
         from src.ui.screens.scores_screen import ScoresScreen
@@ -44,6 +50,8 @@ class MenuScreen(Screen):
         match event.button.id:
             case "btn_new_game":
                 self.app.push_screen(NewGameScreen())
+            case "btn_pygame":
+                self._launch_pygame()
             case "btn_scores":
                 self.app.push_screen(ScoresScreen())
             case "btn_rules":
@@ -52,6 +60,14 @@ class MenuScreen(Screen):
                 self.app.push_screen(CreditsScreen())
             case "btn_quit":
                 self.app.exit()
+
+    def _launch_pygame(self) -> None:
+        """Lance l'interface Pygame dans un processus séparé."""
+        self.app.notify("Ouverture de l'interface graphique…", severity="information")
+        subprocess.Popen(
+            [sys.executable, "main_pygame.py"],
+            cwd=str(__import__("pathlib").Path(__file__).parents[3]),
+        )
 
     def action_quit_game(self) -> None:
         self.app.exit()

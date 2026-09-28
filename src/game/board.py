@@ -210,3 +210,60 @@ def lire_grille(chemin: str) -> list[list[int]]:
             f"La grille doit contenir exactement 9 lignes, trouvé {len(grille)}."
         )
     return grille
+
+
+class Board:
+    """Modern board used by GameSession, IASolver and grid_loader."""
+
+    def __init__(self):
+        self._grid: list[list[int]] = [[0] * 9 for _ in range(9)]
+        self._locked: list[list[bool]] = [[False] * 9 for _ in range(9)]
+
+    def load(self, grid: list[list[int]]) -> None:
+        self._grid = deepcopy(grid)
+        self._locked = [[grid[r][c] != 0 for c in range(9)] for r in range(9)]
+
+    def get(self, row: int, col: int) -> int:
+        return self._grid[row][col]
+
+    def is_locked(self, row: int, col: int) -> bool:
+        return self._locked[row][col]
+
+    def is_valid_placement(self, row: int, col: int, value: int) -> bool:
+        if value in self._grid[row]:
+            return False
+        if value in [self._grid[r][col] for r in range(9)]:
+            return False
+        br, bc = (row // 3) * 3, (col // 3) * 3
+        for r in range(br, br + 3):
+            for c in range(bc, bc + 3):
+                if self._grid[r][c] == value:
+                    return False
+        return True
+
+    def place(self, row: int, col: int, value: int) -> bool:
+        if self._locked[row][col]:
+            return False
+        if not self.is_valid_placement(row, col, value):
+            return False
+        self._grid[row][col] = value
+        return True
+
+    def clear(self, row: int, col: int) -> bool:
+        if self._locked[row][col]:
+            return False
+        self._grid[row][col] = 0
+        return True
+
+    def is_complete(self) -> bool:
+        return all(self._grid[r][c] != 0 for r in range(9) for c in range(9))
+
+    def to_list(self) -> list[list[int]]:
+        return deepcopy(self._grid)
+
+    def initial_grid(self) -> list[list[int]]:
+        """Returns the puzzle grid (only locked/initial cells, 0 elsewhere)."""
+        return [
+            [self._grid[r][c] if self._locked[r][c] else 0 for c in range(9)]
+            for r in range(9)
+        ]
